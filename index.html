@@ -1,148 +1,116 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<img src="BUFFALO RIDGE 3.0.png" alt="Your Logo" style="height: 360px;">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Buffalo Ridge Podcast</title>
+
+  <!-- Typewriter Font -->
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
       background-color: #000;
       color: #fff;
-      font-family: 'Courier New', Courier, monospace;
+      font-family: 'Special Elite', monospace;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
-      text-align: center;
       padding: 2rem;
+      text-align: center;
     }
+
+    img.logo {
+      height: 300px;
+      width: auto;
+      margin-bottom: 2rem;
+    }
+
     h1 {
       font-size: 3em;
-      margin-bottom: 1rem;
+      margin: 0 0 1rem 0;
       text-shadow: 2px 2px 8px #000;
     }
+
     p {
       font-size: 1.2em;
-      max-width: 600px;
+      max-width: 700px;
+      margin-bottom: 2rem;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 800px;
+      margin-top: 2rem;
+    }
+
+    .ridge-link {
+      text-decoration: none;
+    }
+
+    .ridge-button {
+      background-color: #111;
+      color: #eee;
+      border: 3px solid #444;
+      border-radius: 6px;
+      padding: 20px 10px;
+      font-size: 1.3em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px black;
+      box-shadow: 0 0 10px #000;
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .ridge-button:hover {
+      background-color: #222;
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
+
+  <!-- Logo -->
+  <img src="BUFFALO RIDGE 3.0.png" alt="Buffalo Ridge Logo" class="logo">
+
+  <!-- Header Text -->
   <h1>Buffalo Ridge Podcast</h1>
-  <p>NEW EPISODES EVERY THURSDAY... Buffalo Ridge... your source for chilling stories, strange events, and voices.  
-    Right here from up on the Ridge.</p>
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Buffalo Ridge Button Link</title>
-  <style>
-    body {
-      background-color: #000;
-      font-family: 'Impact', 'Arial Black', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
+  <p>New episodes every Thursday... Buffalo Ridge is your source for chilling stories, strange events, and voices.  
+     Right here from up on the Ridge.</p>
 
-    .ridge-link {
-      text-decoration: none;
-    }
+  <!-- Button Grid -->
+  <div class="button-grid">
 
-    .ridge-button {
-      background-color: #111;
-      color: #eee;
-      border: 3px solid #444;
-      border-radius: 6px;
-      padding: 20px 60px;
-      font-size: 2em;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 1px 1px 2px black;
-      box-shadow: 0 0 10px #000;
-      transition: background 0.3s, transform 0.2s;
-      cursor: pointer;
-    }
+    <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link">
+      <div class="ridge-button">Spotify</div>
+    </a>
 
-    .ridge-button:hover {
-      background-color: #222;
-      transform: scale(1.05);
-    }
-  </style>
-</head>
-<body>
+    <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link">
+      <div class="ridge-button">YouTube</div>
+    </a>
 
+    <a href="https://example.com/episode-list" target="_blank" class="ridge-link">
+      <div class="ridge-button">Episodes</div>
+    </a>
 
-  <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link">
-    <div class="ridge-button">WATCH ON SPOTIFY</div>
-  </a>
+    <a href="https://example.com/about" target="_blank" class="ridge-link">
+      <div class="ridge-button">About</div>
+    </a>
 
-</body>
-</html>
+    <a href="https://example.com/contact" target="_blank" class="ridge-link">
+      <div class="ridge-button">Contact</div>
+    </a>
 
-</a>
-<div style="height: 20px;"></div>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Buffalo Ridge Button Link</title>
-  <style>
-    body {
-      background-color: #000;
-      font-family: 'Impact', 'Arial Black', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
+    <a href="mailto:you@example.com" class="ridge-link">
+      <div class="ridge-button">Email Us</div>
+    </a>
 
-    .ridge-link {
-      text-decoration: none;
-    }
-
-    .ridge-button {
-      background-color: #111;
-      color: #eee;
-      border: 3px solid #444;
-      border-radius: 6px;
-      padding: 20px 60px;
-      font-size: 2em;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 1px 1px 2px black;
-      box-shadow: 0 0 10px #000;
-      transition: background 0.3s, transform 0.2s;
-      cursor: pointer;
-    }
-
-    .ridge-button:hover {
-      background-color: #222;
-      transform: scale(1.05);
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Replace the URL below with your actual YouTube channel link -->
-  <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link">
-    <div class="ridge-button">SUBSCRIBE ON YOUTUBE</div>
-  </a>
-
-</body>
-</html>
-
-</a>
+  </div>
 
 </body>
 </html>

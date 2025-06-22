@@ -13,7 +13,7 @@
       margin: 0;
       background-color: #000;
       color: #fff;
-      font-family: 'Special Elite', monospace;
+      font-family: 'Special+Elite', monospace;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -36,7 +36,7 @@
     p {
       font-size: 1.2em;
       max-width: 700px;
-      margin-bottom: 2rem;
+      margin: 0 auto 1rem;
     }
 
     .button-grid {
@@ -45,7 +45,7 @@
       gap: 20px;
       width: 100%;
       max-width: 800px;
-      margin-top: 2rem;
+      margin: 2rem 0;
     }
 
     .ridge-link {
@@ -71,6 +71,41 @@
       background-color: #222;
       transform: scale(1.05);
     }
+
+    .section {
+      margin-top: 3rem;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    iframe, audio {
+      width: 100%;
+      margin-top: 1rem;
+      border: none;
+    }
+
+    input, textarea, button {
+      font-family: 'Special Elite', monospace;
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      border: 2px solid #444;
+      background-color: #111;
+      color: #fff;
+    }
+
+    button {
+      cursor: pointer;
+      background-color: #333;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
   </style>
 </head>
 <body>
@@ -80,36 +115,65 @@
 
   <!-- Header Text -->
   <h1>Buffalo Ridge Podcast</h1>
-  <p>New episodes every Thursday... Buffalo Ridge is your source for chilling stories, strange events, and voices.  
-     Right here from up on the Ridge.</p>
+  <p>New episodes every Thursday... Buffalo Ridge is your source for chilling stories, strange events, and voices.</p>
+  <p><strong>Right here from up on the Ridge.</strong></p>
 
   <!-- Button Grid -->
   <div class="button-grid">
-
     <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link">
       <div class="ridge-button">Spotify</div>
     </a>
-
     <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link">
       <div class="ridge-button">YouTube</div>
     </a>
-
     <a href="https://example.com/episode-list" target="_blank" class="ridge-link">
       <div class="ridge-button">Episodes</div>
     </a>
-
     <a href="https://example.com/about" target="_blank" class="ridge-link">
       <div class="ridge-button">About</div>
     </a>
-
     <a href="https://www.facebook.com/photo/?fbid=122102987132919073&set=a.122102987318919073" target="_blank" class="ridge-link">
       <div class="ridge-button">Touch Ty's Weener</div>
     </a>
-
     <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link">
       <div class="ridge-button">Email Us</div>
     </a>
+  </div>
 
+  <!-- Audio Player Section -->
+  <div class="section">
+    <h2>Listen to the Latest Episode</h2>
+    <audio controls>
+      <source src="your-latest-episode.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- Video Embed Section -->
+  <div class="section">
+    <h2>Watch the Show</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+            title="YouTube video player" allowfullscreen></iframe>
+  </div>
+
+  <!-- Newsletter Signup -->
+  <div class="section">
+    <h2>Subscribe to Our Newsletter</h2>
+    <form action="mailto:your@email.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <!-- Comments Section -->
+  <div class="section">
+    <h2>Leave a Comment</h2>
+    <form action="#" method="post">
+      <textarea name="comment" rows="4" placeholder="Your thoughts..."></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <p style="font-size: 0.9em; opacity: 0.6;">(Comments won't be saved without a backend. Future upgrade!)</p>
   </div>
 
 </body>

@@ -81,12 +81,17 @@
       .portrait-row-mobile {
         display: flex;
         justify-content: center;
-        gap: 0.8rem;
+        gap: 1rem;
         flex-wrap: nowrap;
         margin-top: 1rem;
         margin-bottom: 1.5rem;
         max-width: 90vw;
-        flex-shrink: 1;
+      }
+
+      .mobile-profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .portrait-img-mobile {
@@ -197,14 +202,14 @@
     });
   </script>
 
-  <!-- Portrait and Logo Layout -->
+  <!-- Portrait and Logo Layout (Desktop) -->
   <div class="portrait-wrapper">
     <div class="portrait-column">
       <div><img src="DREW.png" alt="Drew" class="portrait-img"><p>Drew</p></div>
       <div><img src="TY.png" alt="Ty" class="portrait-img"><p>Ty</p></div>
     </div>
     <div>
-      <img src="BUFFALO RIDGE LOGO 4.0.png" alt="Buffalo Ridge Logo" class="logo">
+      <img src="BUFFALO RIDGE 3.0.png" alt="Buffalo Ridge Logo" class="logo">
     </div>
     <div class="portrait-column">
       <div><img src="ROB.png" alt="Rob" class="portrait-img"><p>Rob</p></div>
@@ -212,12 +217,24 @@
     </div>
   </div>
 
-  <!-- Mobile Portrait Row -->
+  <!-- Portraits on Mobile (Name Above Image) -->
   <div class="portrait-row-mobile" style="display:none;">
-    <img src="DREW.png" alt="Drew" class="portrait-img-mobile">
-    <img src="ROB.png" alt="Rob" class="portrait-img-mobile">
-    <img src="STEVEN.png" alt="Steven" class="portrait-img-mobile">
-    <img src="TY.png" alt="Ty" class="portrait-img-mobile">
+    <div class="mobile-profile">
+      <p>Drew</p>
+      <img src="DREW.png" alt="Drew" class="portrait-img-mobile">
+    </div>
+    <div class="mobile-profile">
+      <p>Rob</p>
+      <img src="ROB.png" alt="Rob" class="portrait-img-mobile">
+    </div>
+    <div class="mobile-profile">
+      <p>Steven</p>
+      <img src="STEVEN.png" alt="Steven" class="portrait-img-mobile">
+    </div>
+    <div class="mobile-profile">
+      <p>Ty</p>
+      <img src="TY.png" alt="Ty" class="portrait-img-mobile">
+    </div>
   </div>
 
   <!-- Description -->
@@ -234,7 +251,7 @@
     <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link"><div class="ridge-button">Email Us</div></a>
   </div>
 
-  <!-- Sound Bites Section -->
+  <!-- Sound Bites -->
   <div id="sound-section" class="section" style="display: none;">
     <h2>Sound Bites</h2>
     <div class="button-grid">
@@ -247,12 +264,13 @@
     <audio id="sound3" src="sounds/GUN SWIM.mp3"></audio>
   </div>
 
-  <!-- Latest Episode -->
+  <!-- Latest Episode Video -->
   <div class="section">
     <h2>Watch the Latest Episode</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" title="YouTube video player" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" allowfullscreen></iframe>
   </div>
 
+  <!-- Latest Audio -->
   <div class="section">
     <h2>Listen to the Latest Episode</h2>
     <audio controls>
@@ -261,7 +279,7 @@
     </audio>
   </div>
 
-  <!-- Newsletter -->
+  <!-- Newsletter Signup -->
   <div class="section">
     <h2>Subscribe to Our Newsletter</h2>
     <form action="mailto:your@email.com" method="post" enctype="text/plain">

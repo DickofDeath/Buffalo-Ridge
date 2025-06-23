@@ -25,17 +25,8 @@
       height: 400px;
       width: auto;
       max-width: 90vw;
-      animation: glitch 2s infinite;
-    }
-
-    /* Glitch Effect Animation */
-    @keyframes glitch {
-      0% { transform: translate(0); }
-      20% { transform: translate(-2px, 2px) skew(-1deg); }
-      40% { transform: translate(2px, -1px) skew(1deg); }
-      60% { transform: translate(-1px, 1px) skew(-2deg); }
-      80% { transform: translate(1px, -2px) skew(2deg); }
-      100% { transform: translate(0); }
+      animation: flickerLogo 3.2s infinite;
+      filter: grayscale(100%);
     }
 
     .portrait-img {
@@ -45,16 +36,20 @@
       filter: grayscale(100%);
       transition: all 0.4s ease;
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
-      animation: flicker 2s infinite;
+      animation: flicker 2.7s infinite;
     }
 
     @keyframes flicker {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        opacity: 1;
-      }
-      20%, 24%, 55% {
-        opacity: 0.5;
-      }
+      0%, 19%, 22%, 62%, 64%, 100% { opacity: 1; }
+      20%, 21%, 63% { opacity: 0.4; }
+      23% { opacity: 0.8; }
+      65% { opacity: 0.3; }
+    }
+
+    @keyframes flickerLogo {
+      0%, 5%, 9%, 14%, 20%, 100% { opacity: 1; }
+      6%, 10%, 13%, 15% { opacity: 0.5; }
+      16%, 19% { opacity: 0.2; }
     }
 
     .portrait-wrapper {
@@ -73,41 +68,44 @@
       gap: 1rem;
     }
 
-    /* Mobile layout override */
     @media (max-width: 768px) {
       .portrait-wrapper {
         flex-direction: column;
         align-items: center;
       }
 
-      .logo {
-        height: 280px;
-      }
-
       .portrait-column {
-        display: none; /* Hide desktop layout stacks */
+        display: none;
       }
 
       .portrait-row-mobile {
         display: flex;
         justify-content: center;
-        gap: 0.5rem;
+        gap: 0.8rem;
         flex-wrap: nowrap;
         margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        max-width: 90vw;
+        flex-shrink: 1;
       }
 
       .portrait-img-mobile {
-        height: 70px;
+        height: 80px;
         width: auto;
         border-radius: 6px;
         filter: grayscale(100%);
-        animation: flicker 2s infinite;
+        animation: flicker 2.4s infinite;
         transition: all 0.4s ease;
+        flex-shrink: 1;
       }
 
       .portrait-img-mobile:hover {
         filter: grayscale(0%) brightness(1.1);
         transform: scale(1.05);
+      }
+
+      .logo {
+        height: 300px;
       }
     }
 
@@ -188,6 +186,9 @@
 </head>
 <body>
 
+  <!-- Background Hum -->
+  <audio src="sounds/background-hum.mp3" autoplay loop hidden></audio>
+
   <!-- Portraits and Logo Layout (Desktop) -->
   <div class="portrait-wrapper">
 
@@ -219,7 +220,6 @@
         <p>Steven</p>
       </div>
     </div>
-
   </div>
 
   <!-- Mobile Portrait Row -->
@@ -323,7 +323,7 @@
       if (selected) selected.play();
     }
 
-    // Show mobile portrait row on small screens
+    // Show mobile portrait row on load if needed
     window.addEventListener("load", () => {
       if (window.innerWidth <= 768) {
         document.querySelector(".portrait-row-mobile").style.display = "flex";

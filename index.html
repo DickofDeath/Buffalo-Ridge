@@ -186,8 +186,8 @@
 </head>
 <body>
 
-  <!-- Background Hum -->
-  <audio src="sounds/creepy_background_hum.mp3" autoplay loop hidden></audio>
+  <!-- Background Hum with Whispers -->
+  <audio src="sounds/creepy_background_hum_with_whispers.mp3" autoplay loop hidden></audio>
 
   <!-- Portraits and Logo Layout (Desktop) -->
   <div class="portrait-wrapper">
@@ -323,7 +323,6 @@
       if (selected) selected.play();
     }
 
-    // Show mobile portrait row on load if needed
     window.addEventListener("load", () => {
       if (window.innerWidth <= 768) {
         document.querySelector(".portrait-row-mobile").style.display = "flex";
@@ -333,3 +332,4 @@
 
 </body>
 </html>
+

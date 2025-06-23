@@ -186,39 +186,29 @@
 </head>
 <body>
 
-  <!-- Background Hum with Whispers -->
-  <audio src="sounds/creepy_background_hum_with_whispers.mp3" autoplay loop hidden></audio>
+  <!-- Background Hum with Autoplay Fix -->
+  <audio id="bg-audio" src="sounds/creepy_background_hum_with_whispers.mp3" autoplay loop muted hidden></audio>
+  <script>
+    window.addEventListener('click', function enableAudio() {
+      const audio = document.getElementById('bg-audio');
+      audio.muted = false;
+      audio.play().catch(e => console.log('Playback error:', e));
+      window.removeEventListener('click', enableAudio);
+    });
+  </script>
 
-  <!-- Portraits and Logo Layout (Desktop) -->
+  <!-- Portrait and Logo Layout -->
   <div class="portrait-wrapper">
-
-    <!-- Left Column (Desktop) -->
     <div class="portrait-column">
-      <div>
-        <img src="DREW.png" alt="Drew" class="portrait-img">
-        <p>Drew</p>
-      </div>
-      <div>
-        <img src="TY.png" alt="Ty" class="portrait-img">
-        <p>Ty</p>
-      </div>
+      <div><img src="DREW.png" alt="Drew" class="portrait-img"><p>Drew</p></div>
+      <div><img src="TY.png" alt="Ty" class="portrait-img"><p>Ty</p></div>
     </div>
-
-    <!-- Center Logo -->
     <div>
       <img src="BUFFALO RIDGE LOGO 4.0.png" alt="Buffalo Ridge Logo" class="logo">
     </div>
-
-    <!-- Right Column (Desktop) -->
     <div class="portrait-column">
-      <div>
-        <img src="ROB.png" alt="Rob" class="portrait-img">
-        <p>Rob</p>
-      </div>
-      <div>
-        <img src="STEVEN.png" alt="Steven" class="portrait-img">
-        <p>Steven</p>
-      </div>
+      <div><img src="ROB.png" alt="Rob" class="portrait-img"><p>Rob</p></div>
+      <div><img src="STEVEN.png" alt="Steven" class="portrait-img"><p>Steven</p></div>
     </div>
   </div>
 
@@ -236,24 +226,12 @@
 
   <!-- Button Grid -->
   <div class="button-grid">
-    <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link">
-      <div class="ridge-button">Spotify</div>
-    </a>
-    <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link">
-      <div class="ridge-button">YouTube</div>
-    </a>
-    <div class="ridge-link">
-      <div class="ridge-button" onclick="toggleSounds()">Sounds</div>
-    </div>
-    <a href="https://youtu.be/HRAJbOmm6Lk?si=sgOuRF0foGBzJJxU" target="_blank" class="ridge-link">
-      <div class="ridge-button">About</div>
-    </a>
-    <a href="https://www.facebook.com/photo/?fbid=122102987132919073&set=a.122102987318919073" target="_blank" class="ridge-link">
-      <div class="ridge-button">Touch Ty's Weener</div>
-    </a>
-    <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link">
-      <div class="ridge-button">Email Us</div>
-    </a>
+    <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link"><div class="ridge-button">Spotify</div></a>
+    <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link"><div class="ridge-button">YouTube</div></a>
+    <div class="ridge-link"><div class="ridge-button" onclick="toggleSounds()">Sounds</div></div>
+    <a href="https://youtu.be/HRAJbOmm6Lk?si=sgOuRF0foGBzJJxU" target="_blank" class="ridge-link"><div class="ridge-button">About</div></a>
+    <a href="https://www.facebook.com/photo/?fbid=122102987132919073&set=a.122102987318919073" target="_blank" class="ridge-link"><div class="ridge-button">Touch Ty's Weener</div></a>
+    <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link"><div class="ridge-button">Email Us</div></a>
   </div>
 
   <!-- Sound Bites Section -->
@@ -269,15 +247,12 @@
     <audio id="sound3" src="sounds/GUN SWIM.mp3"></audio>
   </div>
 
-  <!-- Latest Episode Video -->
+  <!-- Latest Episode -->
   <div class="section">
     <h2>Watch the Latest Episode</h2>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" 
-            title="YouTube video player" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" title="YouTube video player" allowfullscreen></iframe>
   </div>
 
-  <!-- Latest Audio -->
   <div class="section">
     <h2>Listen to the Latest Episode</h2>
     <audio controls>
@@ -286,7 +261,7 @@
     </audio>
   </div>
 
-  <!-- Newsletter Signup -->
+  <!-- Newsletter -->
   <div class="section">
     <h2>Subscribe to Our Newsletter</h2>
     <form action="mailto:your@email.com" method="post" enctype="text/plain">
@@ -306,7 +281,6 @@
     <p style="font-size: 0.9em; opacity: 0.6;">(Comments won't be saved without a backend. Future upgrade!)</p>
   </div>
 
-  <!-- JavaScript -->
   <script>
     function toggleSounds() {
       const section = document.getElementById('sound-section');
@@ -332,4 +306,3 @@
 
 </body>
 </html>
-

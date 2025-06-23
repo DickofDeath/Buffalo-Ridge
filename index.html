@@ -24,7 +24,7 @@
     .logo {
       height: 400px;
       width: auto;
-      margin-bottom: 1rem;
+      max-width: 90vw;
     }
 
     .portrait-img {
@@ -44,6 +44,48 @@
       20%, 24%, 55% {
         opacity: 0.5;
       }
+    }
+
+    .portrait-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .portrait-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .portrait-wrapper {
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 1rem;
+      }
+
+      .portrait-column {
+        gap: 0.5rem;
+      }
+
+      .portrait-img {
+        height: 150px;
+      }
+
+      .logo {
+        height: 300px;
+      }
+    }
+
+    p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 0 auto 1rem;
     }
 
     .button-grid {
@@ -113,48 +155,22 @@
     button:hover {
       background-color: #555;
     }
-
-    .portrait-wrapper {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .portrait-column {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    @media (max-width: 768px) {
-      .logo {
-        height: 320px;
-      }
-
-      .portrait-img {
-        height: 160px;
-      }
-    }
   </style>
 </head>
 <body>
 
-  <!-- Portrait + Logo Row -->
+  <!-- Portraits and Logo Layout -->
   <div class="portrait-wrapper">
 
     <!-- Left Column -->
     <div class="portrait-column">
       <div>
         <img src="DREW.png" alt="Drew" class="portrait-img">
-        <p style="margin: 0.5rem 0 0;">Drew</p>
+        <p>Drew</p>
       </div>
       <div>
         <img src="TY.png" alt="Ty" class="portrait-img">
-        <p style="margin: 0.5rem 0 0;">Ty</p>
+        <p>Ty</p>
       </div>
     </div>
 
@@ -167,13 +183,14 @@
     <div class="portrait-column">
       <div>
         <img src="ROB.png" alt="Rob" class="portrait-img">
-        <p style="margin: 0.5rem 0 0;">Rob</p>
+        <p>Rob</p>
       </div>
       <div>
         <img src="STEVEN.png" alt="Steven" class="portrait-img">
-        <p style="margin: 0.5rem 0 0;">Steven</p>
+        <p>Steven</p>
       </div>
     </div>
+
   </div>
 
   <!-- Description -->

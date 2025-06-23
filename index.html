@@ -25,6 +25,17 @@
       height: 400px;
       width: auto;
       max-width: 90vw;
+      animation: glitch 2s infinite;
+    }
+
+    /* Glitch Effect Animation */
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px) skew(-1deg); }
+      40% { transform: translate(2px, -1px) skew(1deg); }
+      60% { transform: translate(-1px, 1px) skew(-2deg); }
+      80% { transform: translate(1px, -2px) skew(2deg); }
+      100% { transform: translate(0); }
     }
 
     .portrait-img {
@@ -62,23 +73,41 @@
       gap: 1rem;
     }
 
+    /* Mobile layout override */
     @media (max-width: 768px) {
       .portrait-wrapper {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        gap: 1rem;
-      }
-
-      .portrait-column {
-        gap: 0.5rem;
-      }
-
-      .portrait-img {
-        height: 150px;
+        flex-direction: column;
+        align-items: center;
       }
 
       .logo {
-        height: 300px;
+        height: 280px;
+      }
+
+      .portrait-column {
+        display: none; /* Hide desktop layout stacks */
+      }
+
+      .portrait-row-mobile {
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        flex-wrap: nowrap;
+        margin-top: 1rem;
+      }
+
+      .portrait-img-mobile {
+        height: 70px;
+        width: auto;
+        border-radius: 6px;
+        filter: grayscale(100%);
+        animation: flicker 2s infinite;
+        transition: all 0.4s ease;
+      }
+
+      .portrait-img-mobile:hover {
+        filter: grayscale(0%) brightness(1.1);
+        transform: scale(1.05);
       }
     }
 
@@ -159,10 +188,10 @@
 </head>
 <body>
 
-  <!-- Portraits and Logo Layout -->
+  <!-- Portraits and Logo Layout (Desktop) -->
   <div class="portrait-wrapper">
 
-    <!-- Left Column -->
+    <!-- Left Column (Desktop) -->
     <div class="portrait-column">
       <div>
         <img src="DREW.png" alt="Drew" class="portrait-img">
@@ -179,7 +208,7 @@
       <img src="BUFFALO RIDGE 3.0.png" alt="Buffalo Ridge Logo" class="logo">
     </div>
 
-    <!-- Right Column -->
+    <!-- Right Column (Desktop) -->
     <div class="portrait-column">
       <div>
         <img src="ROB.png" alt="Rob" class="portrait-img">
@@ -191,6 +220,14 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Mobile Portrait Row -->
+  <div class="portrait-row-mobile" style="display:none;">
+    <img src="DREW.png" alt="Drew" class="portrait-img-mobile">
+    <img src="ROB.png" alt="Rob" class="portrait-img-mobile">
+    <img src="STEVEN.png" alt="Steven" class="portrait-img-mobile">
+    <img src="TY.png" alt="Ty" class="portrait-img-mobile">
   </div>
 
   <!-- Description -->
@@ -285,6 +322,13 @@
       const selected = document.getElementById(id);
       if (selected) selected.play();
     }
+
+    // Show mobile portrait row on small screens
+    window.addEventListener("load", () => {
+      if (window.innerWidth <= 768) {
+        document.querySelector(".portrait-row-mobile").style.display = "flex";
+      }
+    });
   </script>
 
 </body>

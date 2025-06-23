@@ -119,9 +119,9 @@
     <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link">
       <div class="ridge-button">YouTube</div>
     </a>
-    <a href="https://example.com/episode-list" target="_blank" class="ridge-link">
-      <div class="ridge-button">Sounds</div>
-    </a>
+    <div class="ridge-link">
+      <div class="ridge-button" onclick="toggleSounds()">Sounds</div>
+    </div>
     <a href="https://youtu.be/HRAJbOmm6Lk?si=sgOuRF0foGBzJJxU" target="_blank" class="ridge-link">
       <div class="ridge-button">About</div>
     </a>
@@ -131,6 +131,21 @@
     <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link">
       <div class="ridge-button">Email Us</div>
     </a>
+  </div>
+
+  <!-- Sound Bites Section (Hidden by default) -->
+  <div id="sound-section" class="section" style="display: none;">
+    <h2>Sound Bites</h2>
+    <div class="button-grid">
+      <button onclick="playSound('sound1')">Creepy Laugh</button>
+      <button onclick="playSound('sound2')">Wind Howl</button>
+      <button onclick="playSound('sound3')">Thunder Clap</button>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="sound1" src="sounds/creepy-laugh.mp3"></audio>
+    <audio id="sound2" src="sounds/wind-howl.mp3"></audio>
+    <audio id="sound3" src="sounds/thunder-clap.mp3"></audio>
   </div>
 
   <!-- Video Embed Section -->
@@ -170,5 +185,24 @@
     <p style="font-size: 0.9em; opacity: 0.6;">(Comments won't be saved without a backend. Future upgrade!)</p>
   </div>
 
+  <!-- Script for sound toggling and playback -->
+  <script>
+    function toggleSounds() {
+      const section = document.getElementById('sound-section');
+      section.style.display = section.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function playSound(id) {
+      const sounds = document.querySelectorAll('audio');
+      sounds.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+      const selected = document.getElementById(id);
+      if (selected) selected.play();
+    }
+  </script>
+
 </body>
 </html>
+

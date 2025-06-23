@@ -22,7 +22,7 @@
     }
 
     img.logo {
-      height: 300px;
+      height: 260px;
       width: auto;
       margin-bottom: 1rem;
     }
@@ -100,36 +100,58 @@
     button:hover {
       background-color: #555;
     }
+
+    .portrait-img {
+      height: 200px;
+      width: auto;
+      border-radius: 8px;
+      filter: grayscale(100%);
+      transition: all 0.4s ease;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+    }
+
+    .portrait-img:hover {
+      filter: grayscale(0%) brightness(1.1);
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #c70039;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Portrait Banner Row -->
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1rem; margin-bottom: 2rem;">
-    <div>
-      <img src="DREW.png" alt="Drew" style="height: 200px; width: auto; border-radius: 8px;">
-      <p style="margin: 0.5rem 0 0; font-size: 1em;">Drew</p>
-    </div>
-    <div>
-      <img src="STEVEN.png" alt="Steven" style="height: 200px; width: auto; border-radius: 8px;">
-      <p style="margin: 0.5rem 0 0; font-size: 1em;">Steven</p>
+  <!-- Portrait and Logo Layout -->
+  <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 2rem; margin-bottom: 2rem;">
+
+    <!-- Left Column (Drew over Ty) -->
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+      <div>
+        <img src="DREW.png" alt="Drew" class="portrait-img">
+        <p style="margin: 0.5rem 0 0; font-size: 1em;">Drew</p>
+      </div>
+      <div>
+        <img src="TY.png" alt="Ty" class="portrait-img">
+        <p style="margin: 0.5rem 0 0; font-size: 1em;">Ty</p>
+      </div>
     </div>
 
-    <!-- Logo -->
+    <!-- Center Logo -->
     <div>
       <img src="BUFFALO RIDGE 3.0.png" alt="Buffalo Ridge Logo" class="logo">
     </div>
 
-    <div>
-      <img src="ROB.png" alt="Rob" style="height: 200px; width: auto; border-radius: 8px;">
-      <p style="margin: 0.5rem 0 0; font-size: 1em;">Rob</p>
+    <!-- Right Column (Rob over Steven) -->
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+      <div>
+        <img src="ROB.png" alt="Rob" class="portrait-img">
+        <p style="margin: 0.5rem 0 0; font-size: 1em;">Rob</p>
+      </div>
+      <div>
+        <img src="STEVEN.png" alt="Steven" class="portrait-img">
+        <p style="margin: 0.5rem 0 0; font-size: 1em;">Steven</p>
+      </div>
     </div>
-    <div>
-      <img src="TY.png" alt="Ty" style="height: 200px; width: auto; border-radius: 8px;">
-      <p style="margin: 0.5rem 0 0; font-size: 1em;">Ty</p>
-    </div>
-  </div>
 
+  </div>
 
   <!-- Description -->
   <p>New episodes every Thursday... Buffalo Ridge is your source for chilling stories, strange events, and voices.</p>
@@ -229,4 +251,3 @@
 
 </body>
 </html>
-

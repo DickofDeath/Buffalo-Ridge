@@ -21,16 +21,29 @@
       text-align: center;
     }
 
-    img.logo {
-      height: 260px;
+    .logo {
+      height: 400px;
       width: auto;
       margin-bottom: 1rem;
     }
 
-    p {
-      font-size: 1.2em;
-      max-width: 700px;
-      margin: 0 auto 1rem;
+    .portrait-img {
+      height: 200px;
+      width: auto;
+      border-radius: 8px;
+      filter: grayscale(100%);
+      transition: all 0.4s ease;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+      animation: flicker 2s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 18%, 22%, 25%, 53%, 57%, 100% {
+        opacity: 1;
+      }
+      20%, 24%, 55% {
+        opacity: 0.5;
+      }
     }
 
     .button-grid {
@@ -101,36 +114,47 @@
       background-color: #555;
     }
 
-    .portrait-img {
-      height: 200px;
-      width: auto;
-      border-radius: 8px;
-      filter: grayscale(100%);
-      transition: all 0.4s ease;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+    .portrait-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      margin-bottom: 2rem;
     }
 
-    .portrait-img:hover {
-      filter: grayscale(0%) brightness(1.1);
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #c70039;
+    .portrait-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .logo {
+        height: 320px;
+      }
+
+      .portrait-img {
+        height: 160px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Portrait and Logo Layout -->
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 2rem; margin-bottom: 2rem;">
+  <!-- Portrait + Logo Row -->
+  <div class="portrait-wrapper">
 
-    <!-- Left Column (Drew over Ty) -->
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+    <!-- Left Column -->
+    <div class="portrait-column">
       <div>
         <img src="DREW.png" alt="Drew" class="portrait-img">
-        <p style="margin: 0.5rem 0 0; font-size: 1em;">Drew</p>
+        <p style="margin: 0.5rem 0 0;">Drew</p>
       </div>
       <div>
         <img src="TY.png" alt="Ty" class="portrait-img">
-        <p style="margin: 0.5rem 0 0; font-size: 1em;">Ty</p>
+        <p style="margin: 0.5rem 0 0;">Ty</p>
       </div>
     </div>
 
@@ -139,18 +163,17 @@
       <img src="BUFFALO RIDGE 3.0.png" alt="Buffalo Ridge Logo" class="logo">
     </div>
 
-    <!-- Right Column (Rob over Steven) -->
-    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+    <!-- Right Column -->
+    <div class="portrait-column">
       <div>
         <img src="ROB.png" alt="Rob" class="portrait-img">
-        <p style="margin: 0.5rem 0 0; font-size: 1em;">Rob</p>
+        <p style="margin: 0.5rem 0 0;">Rob</p>
       </div>
       <div>
         <img src="STEVEN.png" alt="Steven" class="portrait-img">
-        <p style="margin: 0.5rem 0 0; font-size: 1em;">Steven</p>
+        <p style="margin: 0.5rem 0 0;">Steven</p>
       </div>
     </div>
-
   </div>
 
   <!-- Description -->
@@ -179,7 +202,7 @@
     </a>
   </div>
 
-  <!-- Sound Bites Section (Hidden by default) -->
+  <!-- Sound Bites Section -->
   <div id="sound-section" class="section" style="display: none;">
     <h2>Sound Bites</h2>
     <div class="button-grid">
@@ -187,14 +210,12 @@
       <button onclick="playSound('sound2')">D in my B</button>
       <button onclick="playSound('sound3')">GUN SWIM</button>
     </div>
-
-    <!-- Audio elements -->
     <audio id="sound1" src="sounds/DID YOU SEE THAT.mp3"></audio>
     <audio id="sound2" src="sounds/D in my B.mp3"></audio>
     <audio id="sound3" src="sounds/GUN SWIM.mp3"></audio>
   </div>
 
-  <!-- Video Embed Section -->
+  <!-- Latest Episode Video -->
   <div class="section">
     <h2>Watch the Latest Episode</h2>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" 
@@ -202,7 +223,7 @@
             referrerpolicy="strict-origin-when-cross-origin"></iframe>
   </div>
 
-  <!-- Audio Player Section -->
+  <!-- Latest Audio -->
   <div class="section">
     <h2>Listen to the Latest Episode</h2>
     <audio controls>
@@ -221,7 +242,7 @@
     </form>
   </div>
 
-  <!-- Comments Section -->
+  <!-- Comments -->
   <div class="section">
     <h2>Leave a Comment</h2>
     <form action="#" method="post">
@@ -231,7 +252,7 @@
     <p style="font-size: 0.9em; opacity: 0.6;">(Comments won't be saved without a backend. Future upgrade!)</p>
   </div>
 
-  <!-- Script for sound toggling and playback -->
+  <!-- JavaScript -->
   <script>
     function toggleSounds() {
       const section = document.getElementById('sound-section');

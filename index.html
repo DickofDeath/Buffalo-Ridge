@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buffalo Ridge</title>
+  <title>Buffalo Ridge Podcast</title>
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
   <style>
     body {
@@ -100,4 +100,165 @@
       font-size: 1.3em;
       text-transform: uppercase;
       letter-spacing: 1px;
-      text-shadow: 1p
+      text-shadow: 1px 1px 2px black;
+      box-shadow: 0 0 10px #000;
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+    }
+
+    .ridge-button:hover {
+      background-color: #222;
+      transform: scale(1.05);
+    }
+
+    .ridge-link {
+      text-decoration: none;
+    }
+
+    .section {
+      margin-top: 2rem;
+      max-width: 700px;
+      width: 100%;
+    }
+
+    iframe, audio {
+      width: 100%;
+      margin-top: 1rem;
+      border: none;
+    }
+
+    input, textarea, button {
+      font-family: 'Special Elite', monospace;
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      box-sizing: border-box;
+      border: 2px solid #444;
+      background-color: #111;
+      color: #fff;
+    }
+
+    button {
+      background-color: #333;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <!-- Team layout -->
+  <div class="portrait-wrapper">
+    <div class="portrait-column">
+      <div><img src="DREW.png" alt="Drew" class="portrait-img"><p>Drew</p></div>
+      <div><img src="TY.png" alt="Ty" class="portrait-img"><p>Ty</p></div>
+    </div>
+    <div>
+      <img src="BUFFALO RIDGE LOGO 4.0.png" alt="Buffalo Ridge Logo" class="logo">
+    </div>
+    <div class="portrait-column">
+      <div><img src="ROB.png" alt="Rob" class="portrait-img"><p>Rob</p></div>
+      <div><img src="STEVEN.png" alt="Steven" class="portrait-img"><p>Steven</p></div>
+    </div>
+  </div>
+
+  <!-- Mobile layout -->
+  <div class="mobile-profile-row">
+    <div class="mobile-profile"><p>Drew</p><img src="DREW.png" alt="Drew" class="portrait-img-mobile"></div>
+    <div class="mobile-profile"><p>Rob</p><img src="ROB.png" alt="Rob" class="portrait-img-mobile"></div>
+    <div class="mobile-profile"><p>Steven</p><img src="STEVEN.png" alt="Steven" class="portrait-img-mobile"></div>
+    <div class="mobile-profile"><p>Ty</p><img src="TY.png" alt="Ty" class="portrait-img-mobile"></div>
+  </div>
+
+  <!-- Background hum -->
+  <audio id="bg-audio" src="sounds/creepy_background_hum_with_whispers.mp3" autoplay loop muted hidden></audio>
+  <script>
+    window.addEventListener('click', function enableAudio() {
+      const audio = document.getElementById('bg-audio');
+      audio.muted = false;
+      audio.play().catch(e => console.log('Playback error:', e));
+      window.removeEventListener('click', enableAudio);
+    });
+  </script>
+
+  <!-- Button grid -->
+  <div class="button-grid">
+    <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link"><div class="ridge-button flicker">Spotify</div></a>
+    <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link"><div class="ridge-button flicker">YouTube</div></a>
+    <div class="ridge-link"><div class="ridge-button flicker" onclick="toggleSounds()">Sounds</div></div>
+    <a href="https://youtu.be/HRAJbOmm6Lk?si=sgOuRF0foGBzJJxU" target="_blank" class="ridge-link"><div class="ridge-button flicker">About</div></a>
+    <a href="https://www.facebook.com/photo/?fbid=122102987132919073&set=a.122102987318919073" target="_blank" class="ridge-link"><div class="ridge-button flicker">Touch Ty's Weener</div></a>
+    <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link"><div class="ridge-button flicker">Email Us</div></a>
+  </div>
+
+  <!-- Sounds section -->
+  <div id="sound-section" class="section" style="display: none;">
+    <h2>Sound Bites</h2>
+    <div class="button-grid">
+      <button onclick="playSound('sound1')">DID YOU SEE THAT</button>
+      <button onclick="playSound('sound2')">D in my B</button>
+      <button onclick="playSound('sound3')">GUN SWIM</button>
+    </div>
+    <audio id="sound1" src="sounds/DID YOU SEE THAT.mp3"></audio>
+    <audio id="sound2" src="sounds/D in my B.mp3"></audio>
+    <audio id="sound3" src="sounds/GUN SWIM.mp3"></audio>
+  </div>
+
+  <!-- Video embed -->
+  <div class="section">
+    <h2>Watch the Latest Episode</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" allowfullscreen></iframe>
+  </div>
+
+  <!-- Audio episode -->
+  <div class="section">
+    <h2>Listen to the Latest Episode</h2>
+    <audio controls>
+      <source src="your-latest-episode.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- Newsletter signup -->
+  <div class="section">
+    <h2>Subscribe to Our Newsletter</h2>
+    <form action="mailto:your@email.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <!-- Comment section -->
+  <div class="section">
+    <h2>Leave a Comment</h2>
+    <form action="#" method="post">
+      <textarea name="comment" rows="4" placeholder="Your thoughts..."></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <p style="font-size: 0.9em; opacity: 0.6;">(Comments won't be saved without a backend. Future upgrade!)</p>
+  </div>
+
+  <!-- Sound toggle script -->
+  <script>
+    function toggleSounds() {
+      const section = document.getElementById('sound-section');
+      section.style.display = section.style.display === 'none' ? 'block' : 'none';
+    }
+    function playSound(id) {
+      const sounds = document.querySelectorAll('audio');
+      sounds.forEach(audio => {
+        if (audio.id !== id) {
+          audio.pause();
+          audio.currentTime = 0;
+        }
+      });
+      const selected = document.getElementById(id);
+      if (selected) selected.play();
+    }
+  </script>
+</body>
+</html>

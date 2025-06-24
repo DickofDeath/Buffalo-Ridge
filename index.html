@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF- />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Buffalo Ridge</title>
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
@@ -34,62 +34,37 @@
       6%, 10%, 13%, 15% { opacity: 0.5; }
       16%, 19% { opacity: 0.2; }
     }
-    .ridge-button {
-      background-color: #111;
-      color: #eee;
-      border: 3px solid #444;
-      border-radius: 6px;
-      padding: 20px 10px;
-      font-size: 1.3em;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 2px black;
-      box-shadow: 0 0 10px #000;
-      transition: background 0.3s, transform 0.2s;
+    .portrait-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .portrait-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    .portrait-img, .portrait-img-mobile {
+      height: 200px;
+      width: auto;
+      border-radius: 8px;
+      filter: grayscale(100%);
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
       cursor: pointer;
     }
-    .ridge-button:hover {
-      background-color: #222;
-      transform: scale(1.05);
+    .portrait-img-mobile {
+      height: 80px;
     }
-    .button-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      width: 100%;
-      max-width: 800px;
-      margin: 1.5rem 0;
-    }
-    .ridge-link {
-      text-decoration: none;
-    }
-    .section {
-      margin-top: 2rem;
-      max-width: 700px;
-      width: 100%;
-    }
-    input, textarea, button {
-      font-family: 'Special Elite', monospace;
-      padding: 10px;
-      margin: 10px 0;
-      width: 100%;
-      box-sizing: border-box;
-      border: 2px solid #444;
-      background-color: #111;
-      color: #fff;
-    }
-    button {
-      background-color: #333;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background-color: #555;
-    }
-    iframe, audio {
-      width: 100%;
-      margin-top: 1rem;
-      border: none;
+    .logo {
+      height: 300px;
+      width: auto;
+      max-width: 90vw;
+      filter: grayscale(100%);
     }
     .bio-tooltip {
       display: none;
@@ -131,9 +106,66 @@
       font-size: 1rem;
       cursor: pointer;
     }
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 800px;
+      margin: 1.5rem 0;
+    }
+    .ridge-button {
+      background-color: #111;
+      color: #eee;
+      border: 3px solid #444;
+      border-radius: 6px;
+      padding: 20px 10px;
+      font-size: 1.3em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 1px 1px 2px black;
+      box-shadow: 0 0 10px #000;
+      transition: background 0.3s, transform 0.2s;
+      cursor: pointer;
+    }
+    .ridge-button:hover {
+      background-color: #222;
+      transform: scale(1.05);
+    }
+    .ridge-link {
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
+
+  <div class="portrait-wrapper">
+    <div class="portrait-column">
+      <div><img src="DREW.png" alt="Drew" class="portrait-img flicker"><p>Drew</p></div>
+      <div><img src="TY.png" alt="Ty" class="portrait-img flicker"><p>Ty</p></div>
+    </div>
+    <div>
+      <img src="BUFFALO RIDGE LOGO 4.0.png" alt="Buffalo Ridge Logo" class="logo flicker-logo">
+    </div>
+    <div class="portrait-column">
+      <div><img src="ROB.png" alt="Rob" class="portrait-img flicker"><p>Rob</p></div>
+      <div><img src="STEVEN.png" alt="Steven" class="portrait-img flicker"><p>Steven</p></div>
+    </div>
+  </div>
+
+  <div class="portrait-row-mobile">
+    <div class="mobile-profile"><p>Drew</p><img src="DREW.png" alt="Drew" class="portrait-img-mobile flicker"></div>
+    <div class="mobile-profile"><p>Rob</p><img src="ROB.png" alt="Rob" class="portrait-img-mobile flicker"></div>
+    <div class="mobile-profile"><p>Steven</p><img src="STEVEN.png" alt="Steven" class="portrait-img-mobile flicker"></div>
+    <div class="mobile-profile"><p>Ty</p><img src="TY.png" alt="Ty" class="portrait-img-mobile flicker"></div>
+  </div>
+
+  <div id="bio-tooltip" class="bio-tooltip"></div>
+  <div id="bio-modal" class="mobile-modal">
+    <img id="modal-img" src="" alt="">
+    <p id="modal-text"></p>
+    <button onclick="hideModal()">Close</button>
+  </div>
 
   <div class="button-grid">
     <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link"><div class="ridge-button flicker">Spotify</div></a>
@@ -144,56 +176,6 @@
     <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link"><div class="ridge-button flicker">Email Us</div></a>
   </div>
 
-  <div id="sound-section" class="section" style="display: none;">
-    <h2 class="flicker">Sound Bites</h2>
-    <div class="button-grid">
-      <button class="flicker" onclick="playSound('sound1')">DID YOU SEE THAT</button>
-      <button class="flicker" onclick="playSound('sound2')">D in my B</button>
-      <button class="flicker" onclick="playSound('sound3')">GUN SWIM</button>
-    </div>
-    <audio id="sound1" src="sounds/DID YOU SEE THAT.mp3"></audio>
-    <audio id="sound2" src="sounds/D in my B.mp3"></audio>
-    <audio id="sound3" src="sounds/GUN SWIM.mp3"></audio>
-  </div>
-
-  <div class="section">
-    <h2 class="flicker">Watch the Latest Episode</h2>
-    <iframe src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" allowfullscreen></iframe>
-  </div>
-
-  <div class="section">
-    <h2 class="flicker">Listen to the Latest Episode</h2>
-    <audio controls>
-      <source src="your-latest-episode.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-
-  <div class="section">
-    <h2 class="flicker">Subscribe to Our Newsletter</h2>
-    <form action="mailto:your@email.com" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your name" required>
-      <input type="email" name="email" placeholder="Your email" required>
-      <button type="submit" class="flicker">Sign Up</button>
-    </form>
-  </div>
-
-  <div class="section">
-    <h2 class="flicker">Leave a Comment</h2>
-    <form action="#" method="post">
-      <textarea name="comment" rows="4" placeholder="Your thoughts..."></textarea>
-      <button type="submit" class="flicker">Submit</button>
-    </form>
-    <p style="font-size: 0.9em; opacity: 0.6;">(Comments won't be saved without a backend. Future upgrade!)</p>
-  </div>
-
-  <div id="bio-tooltip" class="bio-tooltip"></div>
-  <div id="bio-modal" class="mobile-modal">
-    <img id="modal-img" src="" alt="">
-    <p id="modal-text"></p>
-    <button onclick="hideModal()">Close</button>
-  </div>
-
 <script>
   const bios = {
     "Drew": "Since his days at Oak Hills High school, Drew has felt challenged to prove/disprove anything difficult to explain. The primary founding member of O.H. S.H.I.T. and a natural investigator, he also enjoys fishing (novice level at best... poser) and being a “Griefer” on GTA V.",
@@ -201,21 +183,6 @@
     "Ty": "The youngest member of the team is also the 3rd of our Oak Hills graduates (Cincinnati’s West Side... Wes-wes yo!) Ty is the research expert for the podcast as well as a founding member of O.H. S.H.I.T.. Just don’t ask him what he’d do for obscene amounts of money... you don’t wanna know.",
     "Steven": "The Genius of the bunch. The resident IT expert on the Ridge, the team would have a hard time getting on the internet without this cat. Just don’t give him your online passwords or you’ll end up married to a Tai mail order bride looking for U.S. residency. He’s sneaky like that..."
   };
-
-  function toggleSounds() {
-    const section = document.getElementById('sound-section');
-    section.style.display = section.style.display === 'none' ? 'block' : 'none';
-  }
-
-  function playSound(id) {
-    const sounds = document.querySelectorAll('audio');
-    sounds.forEach(audio => {
-      audio.pause();
-      audio.currentTime = 0;
-    });
-    const selected = document.getElementById(id);
-    if (selected) selected.play();
-  }
 
   function showTooltip(e, name) {
     const tooltip = document.getElementById('bio-tooltip');
@@ -241,20 +208,28 @@
     document.getElementById('bio-modal').style.display = 'none';
   }
 
+  function toggleSounds() {
+    alert('Sound buttons toggled (function placeholder)');
+  }
+
+  function playSound(id) {
+    const sounds = document.querySelectorAll('audio');
+    sounds.forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+    const selected = document.getElementById(id);
+    if (selected) selected.play();
+  }
+
   window.addEventListener("load", () => {
     document.querySelectorAll('.portrait-img')?.forEach(img => {
-      img.classList.add('flicker');
       img.addEventListener('mouseenter', (e) => showTooltip(e, img.alt));
       img.addEventListener('mouseleave', hideTooltip);
     });
 
     document.querySelectorAll('.portrait-img-mobile')?.forEach(img => {
-      img.classList.add('flicker');
       img.addEventListener('click', () => showModal(img.alt, img.src));
-    });
-
-    document.querySelectorAll('.logo')?.forEach(img => {
-      img.classList.add('flicker-logo');
     });
   });
 </script>

@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Buffalo Ridge Podcast</title>
+  <title>Buffalo Ridge</title>
+
+  <!-- Typewriter Font -->
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -14,28 +17,39 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem;
+      padding: 1rem;
       text-align: center;
     }
 
-    img.logo {
-      height: 300px;
-      animation: flickerLogo 3s infinite;
+    .logo {
+      height: 400px;
+      width: auto;
+      max-width: 90vw;
+      animation: flickerLogo 3.2s infinite;
       filter: grayscale(100%);
     }
 
+    .portrait-img {
+      height: 200px;
+      width: auto;
+      border-radius: 8px;
+      filter: grayscale(100%);
+      transition: all 0.4s ease;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+      animation: flicker 2.7s infinite;
+    }
+
+    @keyframes flicker {
+      0%, 19%, 22%, 62%, 64%, 100% { opacity: 1; }
+      20%, 21%, 63% { opacity: 0.4; }
+      23% { opacity: 0.8; }
+      65% { opacity: 0.3; }
+    }
+
     @keyframes flickerLogo {
-      0%, 19%, 21%, 100% { opacity: 1; }
-      20% { opacity: 0.4; }
-    }
-
-    .flicker {
-      animation: flickerText 2s infinite;
-    }
-
-    @keyframes flickerText {
-      0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
-      19%, 23%, 55% { opacity: 0.4; }
+      0%, 5%, 9%, 14%, 20%, 100% { opacity: 1; }
+      6%, 10%, 13%, 15% { opacity: 0.5; }
+      16%, 19% { opacity: 0.2; }
     }
 
     .portrait-wrapper {
@@ -43,6 +57,7 @@
       justify-content: center;
       align-items: center;
       gap: 2rem;
+      flex-wrap: wrap;
       margin-bottom: 2rem;
     }
 
@@ -53,33 +68,56 @@
       gap: 1rem;
     }
 
-    .portrait-img {
-      height: 200px;
-      border-radius: 8px;
-      filter: grayscale(100%);
-      animation: flickerText 2.5s infinite;
+    @media (max-width: 768px) {
+      .portrait-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .portrait-column {
+        display: none;
+      }
+
+      .portrait-row-mobile {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: nowrap;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        max-width: 90vw;
+      }
+
+      .mobile-profile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .portrait-img-mobile {
+        height: 80px;
+        width: auto;
+        border-radius: 6px;
+        filter: grayscale(100%);
+        animation: flicker 2.4s infinite;
+        transition: all 0.4s ease;
+        flex-shrink: 1;
+      }
+
+      .portrait-img-mobile:hover {
+        filter: grayscale(0%) brightness(1.1);
+        transform: scale(1.05);
+      }
+
+      .logo {
+        height: 300px;
+      }
     }
 
-    .mobile-profile-row {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      max-width: 90vw;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-
-    .mobile-profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .portrait-img-mobile {
-      height: 100px;
-      border-radius: 6px;
-      filter: grayscale(100%);
-      animation: flickerText 2s infinite;
+    p {
+      font-size: 1.2em;
+      max-width: 700px;
+      margin: 0 auto 1rem;
     }
 
     .button-grid {
@@ -88,7 +126,11 @@
       gap: 20px;
       width: 100%;
       max-width: 800px;
-      margin: 2rem 0;
+      margin: 1.5rem 0;
+    }
+
+    .ridge-link {
+      text-decoration: none;
     }
 
     .ridge-button {
@@ -111,10 +153,6 @@
       transform: scale(1.05);
     }
 
-    .ridge-link {
-      text-decoration: none;
-    }
-
     .section {
       margin-top: 2rem;
       max-width: 700px;
@@ -132,6 +170,7 @@
       padding: 10px;
       margin: 10px 0;
       width: 100%;
+      max-width: 100%;
       box-sizing: border-box;
       border: 2px solid #444;
       background-color: #111;
@@ -139,6 +178,7 @@
     }
 
     button {
+      cursor: pointer;
       background-color: #333;
       border-radius: 4px;
       transition: background 0.3s;
@@ -150,7 +190,19 @@
   </style>
 </head>
 <body>
-  <!-- Team layout -->
+
+  <!-- Background Hum with Autoplay Fix -->
+  <audio id="bg-audio" src="sounds/creepy_background_hum_with_whispers.mp3" autoplay loop muted hidden></audio>
+  <script>
+    window.addEventListener('click', function enableAudio() {
+      const audio = document.getElementById('bg-audio');
+      audio.muted = false;
+      audio.play().catch(e => console.log('Playback error:', e));
+      window.removeEventListener('click', enableAudio);
+    });
+  </script>
+
+  <!-- Portrait and Logo Layout (Desktop) -->
   <div class="portrait-wrapper">
     <div class="portrait-column">
       <div><img src="DREW.png" alt="Drew" class="portrait-img"><p>Drew</p></div>
@@ -165,36 +217,41 @@
     </div>
   </div>
 
-  <!-- Mobile layout -->
-  <div class="mobile-profile-row">
-    <div class="mobile-profile"><p>Drew</p><img src="DREW.png" alt="Drew" class="portrait-img-mobile"></div>
-    <div class="mobile-profile"><p>Rob</p><img src="ROB.png" alt="Rob" class="portrait-img-mobile"></div>
-    <div class="mobile-profile"><p>Steven</p><img src="STEVEN.png" alt="Steven" class="portrait-img-mobile"></div>
-    <div class="mobile-profile"><p>Ty</p><img src="TY.png" alt="Ty" class="portrait-img-mobile"></div>
+  <!-- Portraits on Mobile (Name Above Image) -->
+  <div class="portrait-row-mobile" style="display:none;">
+    <div class="mobile-profile">
+      <p>Drew</p>
+      <img src="DREW.png" alt="Drew" class="portrait-img-mobile">
+    </div>
+    <div class="mobile-profile">
+      <p>Rob</p>
+      <img src="ROB.png" alt="Rob" class="portrait-img-mobile">
+    </div>
+    <div class="mobile-profile">
+      <p>Steven</p>
+      <img src="STEVEN.png" alt="Steven" class="portrait-img-mobile">
+    </div>
+    <div class="mobile-profile">
+      <p>Ty</p>
+      <img src="TY.png" alt="Ty" class="portrait-img-mobile">
+    </div>
   </div>
 
-  <!-- Background hum -->
-  <audio id="bg-audio" src="sounds/creepy_background_hum_with_whispers.mp3" autoplay loop muted hidden></audio>
-  <script>
-    window.addEventListener('click', function enableAudio() {
-      const audio = document.getElementById('bg-audio');
-      audio.muted = false;
-      audio.play().catch(e => console.log('Playback error:', e));
-      window.removeEventListener('click', enableAudio);
-    });
-  </script>
+  <!-- Description -->
+  <p>New episodes every Thursday... Buffalo Ridge is your source for chilling stories, strange events, and voices.</p>
+  <p><strong>Right here from up on the Ridge.</strong></p>
 
-  <!-- Button grid -->
+  <!-- Button Grid -->
   <div class="button-grid">
-    <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link"><div class="ridge-button flicker">Spotify</div></a>
-    <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link"><div class="ridge-button flicker">YouTube</div></a>
-    <div class="ridge-link"><div class="ridge-button flicker" onclick="toggleSounds()">Sounds</div></div>
-    <a href="https://youtu.be/HRAJbOmm6Lk?si=sgOuRF0foGBzJJxU" target="_blank" class="ridge-link"><div class="ridge-button flicker">About</div></a>
-    <a href="https://www.facebook.com/photo/?fbid=122102987132919073&set=a.122102987318919073" target="_blank" class="ridge-link"><div class="ridge-button flicker">Touch Ty's Weener</div></a>
-    <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link"><div class="ridge-button flicker">Email Us</div></a>
+    <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link"><div class="ridge-button">Spotify</div></a>
+    <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link"><div class="ridge-button">YouTube</div></a>
+    <div class="ridge-link"><div class="ridge-button" onclick="toggleSounds()">Sounds</div></div>
+    <a href="https://youtu.be/HRAJbOmm6Lk?si=sgOuRF0foGBzJJxU" target="_blank" class="ridge-link"><div class="ridge-button">About</div></a>
+    <a href="https://www.facebook.com/photo/?fbid=122102987132919073&set=a.122102987318919073" target="_blank" class="ridge-link"><div class="ridge-button">Touch Ty's Weener</div></a>
+    <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link"><div class="ridge-button">Email Us</div></a>
   </div>
 
-  <!-- Sounds section -->
+  <!-- Sound Bites -->
   <div id="sound-section" class="section" style="display: none;">
     <h2>Sound Bites</h2>
     <div class="button-grid">
@@ -207,13 +264,13 @@
     <audio id="sound3" src="sounds/GUN SWIM.mp3"></audio>
   </div>
 
-  <!-- Video embed -->
+  <!-- Latest Episode Video -->
   <div class="section">
     <h2>Watch the Latest Episode</h2>
     <iframe width="560" height="315" src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" allowfullscreen></iframe>
   </div>
 
-  <!-- Audio episode -->
+  <!-- Latest Audio -->
   <div class="section">
     <h2>Listen to the Latest Episode</h2>
     <audio controls>
@@ -222,7 +279,7 @@
     </audio>
   </div>
 
-  <!-- Newsletter signup -->
+  <!-- Newsletter Signup -->
   <div class="section">
     <h2>Subscribe to Our Newsletter</h2>
     <form action="mailto:your@email.com" method="post" enctype="text/plain">
@@ -232,7 +289,7 @@
     </form>
   </div>
 
-  <!-- Comment section -->
+  <!-- Comments -->
   <div class="section">
     <h2>Leave a Comment</h2>
     <form action="#" method="post">
@@ -242,23 +299,28 @@
     <p style="font-size: 0.9em; opacity: 0.6;">(Comments won't be saved without a backend. Future upgrade!)</p>
   </div>
 
-  <!-- Sound toggle script -->
+  <!-- Script -->
   <script>
     function toggleSounds() {
       const section = document.getElementById('sound-section');
       section.style.display = section.style.display === 'none' ? 'block' : 'none';
     }
+
     function playSound(id) {
       const sounds = document.querySelectorAll('audio');
       sounds.forEach(audio => {
-        if (audio.id !== id) {
-          audio.pause();
-          audio.currentTime = 0;
-        }
+        audio.pause();
+        audio.currentTime = 0;
       });
       const selected = document.getElementById(id);
       if (selected) selected.play();
     }
+
+    window.addEventListener("load", () => {
+      if (window.innerWidth <= 768) {
+        document.querySelector(".portrait-row-mobile").style.display = "flex";
+      }
+    });
   </script>
 </body>
 </html>

@@ -61,13 +61,15 @@
       filter: grayscale(100%);
       animation: flickerLogo 3.2s infinite;
     }
+
     .mobile-profile-row {
       display: flex;
       justify-content: space-between;
-      width: 100%;
+      align-items: center;
       max-width: 90vw;
+      width: 100%;
       gap: 1rem;
-      margin-top: 1rem;
+      margin-bottom: 2rem;
     }
     .mobile-profile {
       display: flex;
@@ -81,6 +83,7 @@
       filter: grayscale(100%);
       animation: flicker 2.4s infinite;
     }
+
     .bio-tooltip {
       display: none;
       position: absolute;
@@ -93,6 +96,7 @@
       z-index: 100;
       text-align: left;
     }
+
     .mobile-modal {
       display: none;
       position: fixed;
@@ -122,63 +126,6 @@
       font-size: 1rem;
       cursor: pointer;
     }
-    .button-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      width: 100%;
-      max-width: 800px;
-      margin: 2rem 0;
-    }
-    .ridge-button {
-      background-color: #111;
-      color: #eee;
-      border: 3px solid #444;
-      border-radius: 6px;
-      padding: 20px 10px;
-      font-size: 1.3em;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      text-shadow: 1px 1px 2px black;
-      box-shadow: 0 0 10px #000;
-      transition: background 0.3s, transform 0.2s;
-      cursor: pointer;
-    }
-    .ridge-button:hover {
-      background-color: #222;
-      transform: scale(1.05);
-    }
-    .ridge-link {
-      text-decoration: none;
-    }
-    .section {
-      margin-top: 2rem;
-      max-width: 700px;
-      width: 100%;
-    }
-    iframe, audio {
-      width: 100%;
-      margin-top: 1rem;
-      border: none;
-    }
-    input, textarea, button {
-      font-family: 'Special Elite', monospace;
-      padding: 10px;
-      margin: 10px 0;
-      width: 100%;
-      box-sizing: border-box;
-      border: 2px solid #444;
-      background-color: #111;
-      color: #fff;
-    }
-    button {
-      background-color: #333;
-      border-radius: 4px;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background-color: #555;
-    }
   </style>
 </head>
 <body>
@@ -198,7 +145,7 @@
   </div>
 </div>
 
-<!-- Mobile Layout -->
+<!-- Mobile Row -->
 <div class="mobile-profile-row">
   <div class="mobile-profile"><p>Drew</p><img src="DREW.png" alt="Drew" class="portrait-img-mobile"></div>
   <div class="mobile-profile"><p>Rob</p><img src="ROB.png" alt="Rob" class="portrait-img-mobile"></div>
@@ -214,6 +161,8 @@
   <button onclick="hideModal()">Close</button>
 </div>
 
+</body>
+</html>
 <!-- Background Hum -->
 <audio id="bg-audio" src="sounds/creepy_background_hum_with_whispers.mp3" autoplay loop muted hidden></audio>
 <script>
@@ -235,7 +184,7 @@
   <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link"><div class="ridge-button flicker">Email Us</div></a>
 </div>
 
-<!-- Sounds -->
+<!-- Sound Bites -->
 <div id="sound-section" class="section" style="display: none;">
   <h2>Sound Bites</h2>
   <div class="button-grid">
@@ -248,13 +197,13 @@
   <audio id="sound3" src="sounds/GUN SWIM.mp3"></audio>
 </div>
 
-<!-- Video -->
+<!-- Latest Episode Video -->
 <div class="section">
   <h2>Watch the Latest Episode</h2>
   <iframe width="560" height="315" src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" allowfullscreen></iframe>
 </div>
 
-<!-- Audio -->
+<!-- Latest Audio Episode -->
 <div class="section">
   <h2>Listen to the Latest Episode</h2>
   <audio controls>
@@ -263,7 +212,7 @@
   </audio>
 </div>
 
-<!-- Newsletter -->
+<!-- Newsletter Signup -->
 <div class="section">
   <h2>Subscribe to Our Newsletter</h2>
   <form action="mailto:your@email.com" method="post" enctype="text/plain">
@@ -345,6 +294,5 @@
     });
   });
 </script>
-
 </body>
 </html>

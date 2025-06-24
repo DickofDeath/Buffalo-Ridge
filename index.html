@@ -6,8 +6,52 @@
   <title>Buffalo Ridge</title>
   <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
   <style>
-    /* Existing styles omitted for brevity */
-
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Special Elite', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      text-align: center;
+    }
+    .logo {
+      height: 300px;
+      width: auto;
+      max-width: 90vw;
+      filter: grayscale(100%);
+    }
+    .portrait-img {
+      height: 200px;
+      border-radius: 8px;
+      filter: grayscale(100%);
+      transition: all 0.4s ease;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+    }
+    .portrait-img-mobile {
+      height: 80px;
+      border-radius: 6px;
+      filter: grayscale(100%);
+      cursor: pointer;
+    }
+    .portrait-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .portrait-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
     .bio-popup {
       display: none;
       position: absolute;
@@ -22,7 +66,6 @@
       font-size: 0.9rem;
       box-shadow: 0 0 10px black;
     }
-
     .mobile-modal {
       display: none;
       position: fixed;
@@ -34,17 +77,14 @@
       flex-direction: column;
       z-index: 2000;
     }
-
     .mobile-modal img {
       max-height: 50vh;
       margin-bottom: 1rem;
     }
-
     .mobile-modal p {
       max-width: 80%;
       font-size: 1rem;
     }
-
     .mobile-modal button {
       margin-top: 1rem;
       background-color: #444;
@@ -54,12 +94,40 @@
       font-size: 1rem;
       cursor: pointer;
     }
+    @media (max-width: 768px) {
+      .portrait-wrapper { display: none; }
+      .portrait-row-mobile {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin: 1rem 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Existing content above -->
+  <div class="portrait-wrapper">
+    <div class="portrait-column">
+      <div><img src="DREW.png" alt="Drew" class="portrait-img"><p>Drew</p></div>
+      <div><img src="TY.png" alt="Ty" class="portrait-img"><p>Ty</p></div>
+    </div>
+    <div>
+      <img src="BUFFALO RIDGE LOGO 4.0.png" alt="Buffalo Ridge Logo" class="logo">
+    </div>
+    <div class="portrait-column">
+      <div><img src="ROB.png" alt="Rob" class="portrait-img"><p>Rob</p></div>
+      <div><img src="STEVEN.png" alt="Steven" class="portrait-img"><p>Steven</p></div>
+    </div>
+  </div>
 
-  <!-- Add this immediately inside <body> -->
+  <div class="portrait-row-mobile">
+    <div class="mobile-profile"><p>Drew</p><img src="DREW.png" alt="Drew" class="portrait-img-mobile"></div>
+    <div class="mobile-profile"><p>Rob</p><img src="ROB.png" alt="Rob" class="portrait-img-mobile"></div>
+    <div class="mobile-profile"><p>Steven</p><img src="STEVEN.png" alt="Steven" class="portrait-img-mobile"></div>
+    <div class="mobile-profile"><p>Ty</p><img src="TY.png" alt="Ty" class="portrait-img-mobile"></div>
+  </div>
+
   <div id="bio-popup" class="bio-popup"></div>
   <div id="mobileModal" class="mobile-modal">
     <img id="modalImg" src="" alt="">
@@ -67,16 +135,14 @@
     <button onclick="closeModal()">Close</button>
   </div>
 
-  <!-- Existing scripts -->
   <script>
     const bios = {
-      "Drew": "Since his days at Oak Hills High school, Drew has felt challenged to prove/disprove anything difficult to explain. A natural investigator, he also enjoys fishing (novice level at best... poser) and being a “Griefer” on GTA V.",
+      "Drew": "Since his days at Oak Hills High school, Drew has felt challenged to prove/disprove anything difficult to explain. A natural investigator, he also enjoys fishing (novice level at best... poser) and being a \"Griefer\" on GTA V.",
       "Rob": "Experiences on Buffalo Ridge as a young man coupled with 15 years of witnessing unexplained phenomena in Bars and clubs (he has a staunch belief that ghosts and entities are drawn to gathering places) has driven his curiosity. Unfortunately, curiosity does not equal courage... he’s kind of the team chicken shit.",
       "Ty": "The youngest member of the team is also the 3rd of our Oak Hills graduates (Cincinnati’s West Side... Wes-wes yo!) Ty is the research expert for the podcast as well as a founding member of O.H. S.H.I.T.. Just don’t ask him what he’d do for obscene amounts of money... you don’t wanna know.",
       "Steven": "The Genious of the bunch. The resident IT expert on the Ridge, the team would have a hard time getting on the internet without this cat. Just don’t give him your online passwords or you’ll end up married to a Tai mail order bride looking for U.S. residency. He’s sneaky like that..."
     };
 
-    // Desktop hover
     const popup = document.getElementById('bio-popup');
     document.querySelectorAll('.portrait-img').forEach(img => {
       img.addEventListener('mouseenter', (e) => {
@@ -92,7 +158,6 @@
       });
     });
 
-    // Mobile tap
     const modal = document.getElementById('mobileModal');
     const modalImg = document.getElementById('modalImg');
     const modalBio = document.getElementById('modalBio');

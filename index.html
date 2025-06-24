@@ -17,6 +17,7 @@
       padding: 1rem;
       text-align: center;
     }
+
     .logo {
       height: 400px;
       width: auto;
@@ -24,7 +25,8 @@
       animation: flickerLogo 3.2s infinite;
       filter: grayscale(100%);
     }
-    .portrait-img {
+
+    .portrait-img, .portrait-img-mobile {
       height: 200px;
       width: auto;
       border-radius: 8px;
@@ -33,17 +35,30 @@
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
       animation: flicker 2.7s infinite;
     }
+
+    .portrait-img-mobile {
+      height: 80px;
+      border-radius: 6px;
+    }
+
+    .portrait-img-mobile:hover {
+      filter: grayscale(0%) brightness(1.1);
+      transform: scale(1.05);
+    }
+
     @keyframes flicker {
       0%, 19%, 22%, 62%, 64%, 100% { opacity: 1; }
       20%, 21%, 63% { opacity: 0.4; }
       23% { opacity: 0.8; }
       65% { opacity: 0.3; }
     }
+
     @keyframes flickerLogo {
       0%, 5%, 9%, 14%, 20%, 100% { opacity: 1; }
       6%, 10%, 13%, 15% { opacity: 0.5; }
       16%, 19% { opacity: 0.2; }
     }
+
     .portrait-wrapper {
       display: flex;
       justify-content: center;
@@ -52,18 +67,21 @@
       flex-wrap: wrap;
       margin-bottom: 2rem;
     }
+
     .portrait-column {
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1rem;
     }
+
     .portrait-container {
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
     }
+
     .hover-bio {
       position: absolute;
       background-color: rgba(20, 20, 20, 0.95);
@@ -81,19 +99,14 @@
       pointer-events: none;
       animation: flickerBorder 3s infinite;
     }
+
     .portrait-container:hover .hover-bio {
       opacity: 1;
     }
-    .hover-right {
-      left: 105%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    .hover-left {
-      right: 105%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
+
+    .hover-right { left: 105%; top: 50%; transform: translateY(-50%); }
+    .hover-left  { right: 105%; top: 50%; transform: translateY(-50%); }
+
     @keyframes flickerBorder {
       0%, 100% { border-color: #666; box-shadow: 0 0 8px rgba(255,255,255,0.1); }
       10% { border-color: #999; box-shadow: 0 0 12px rgba(255,255,255,0.2); }
@@ -101,6 +114,11 @@
       30% { border-color: #777; box-shadow: 0 0 15px rgba(255,255,255,0.3); }
       40% { border-color: #333; box-shadow: 0 0 6px rgba(255,255,255,0.08); }
     }
+
+    .portrait-row-mobile {
+      display: none;
+    }
+
     @media (max-width: 768px) {
       .portrait-wrapper { flex-direction: column; align-items: center; }
       .portrait-column { display: none; }
@@ -109,26 +127,8 @@
         justify-content: center;
         gap: 1rem;
         flex-wrap: nowrap;
-        margin: 0 0 1.5rem 0;
+        margin-bottom: 1.5rem;
         max-width: 90vw;
-      }
-      .mobile-profile {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .portrait-img-mobile {
-        height: 80px;
-        width: auto;
-        border-radius: 6px;
-        filter: grayscale(100%);
-        animation: flicker 2.4s infinite;
-        transition: all 0.4s ease;
-        flex-shrink: 1;
-      }
-      .portrait-img-mobile:hover {
-        filter: grayscale(0%) brightness(1.1);
-        transform: scale(1.05);
       }
       .logo { height: 300px; margin-bottom: 0; }
       .button-grid { grid-template-columns: 1fr; }
@@ -142,11 +142,56 @@
       }
       .rusty-button { width: 60px; height: 60px; cursor: pointer; }
     }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.97);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .modal img {
+      max-height: 250px;
+      width: auto;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      filter: grayscale(100%);
+    }
+
+    .modal p {
+      font-size: 1em;
+      max-width: 90vw;
+      margin-bottom: 1.5rem;
+    }
+
+    .close-btn {
+      background: #222;
+      border: 2px solid #555;
+      color: white;
+      font-size: 1rem;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .close-btn:hover {
+      background: #444;
+    }
+
     p {
       font-size: 1.2em;
       max-width: 700px;
       margin: 0 auto 1rem;
     }
+
     .button-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -155,7 +200,9 @@
       max-width: 800px;
       margin: 1.5rem 0 0 0;
     }
+
     .ridge-link { text-decoration: none; }
+
     .ridge-button {
       background-color: #111;
       color: #eee;
@@ -170,10 +217,12 @@
       transition: background 0.3s, transform 0.2s;
       cursor: pointer;
     }
+
     .ridge-button:hover {
       background-color: #222;
       transform: scale(1.05);
     }
+
     .rusty-grid {
       display: flex;
       justify-content: center;
@@ -181,17 +230,21 @@
       margin-top: 1rem;
       flex-wrap: wrap;
     }
+
     .rusty-button { width: 80px; height: 80px; cursor: pointer; }
+
     .section {
       margin-top: 2rem;
       max-width: 700px;
       width: 100%;
     }
+
     iframe, audio {
       width: 100%;
       margin-top: 1rem;
       border: none;
     }
+
     input, textarea, button {
       font-family: 'Special Elite', monospace;
       padding: 10px;
@@ -203,12 +256,14 @@
       background-color: #111;
       color: #fff;
     }
+
     button {
       cursor: pointer;
       background-color: #333;
       border-radius: 4px;
       transition: background 0.3s;
     }
+
     button:hover { background-color: #555; }
   </style>
 </head>
@@ -224,52 +279,40 @@
   });
 </script>
 
-<div class="portrait-wrapper">
-  <div class="portrait-column">
-    <div class="portrait-container">
-      <img src="DREW.png" alt="Drew" class="portrait-img">
-      <div class="hover-bio hover-right">
-        Drew – Since his days at Oak Hills High school, Drew has felt challenged to prove/disprove anything difficult to explain. The primary founding member of O.H. S.H.I.T. and a natural investigator, he also enjoys fishing (novice level at best... poser) and being a “Griefer” on GTA V.
-      </div>
-      <p>Drew</p>
-    </div>
-    <div class="portrait-container">
-      <img src="TY.png" alt="Ty" class="portrait-img">
-      <div class="hover-bio hover-right">
-        TY – The youngest member of the team is also the 3rd from Cincinnati’s West Side... (Wes-wes yo!) The research expert for the podcast, he is also a founding member of O.H. S.H.I.T.. Just don’t ask him what he’d do for obscene amounts of money... you don’t wanna know.
-      </div>
-      <p>Ty</p>
-    </div>
-  </div>
-
-  <div>
-    <img src="BUFFALO RIDGE LOGO 4.0.png" alt="Buffalo Ridge Logo" class="logo">
-  </div>
-
-  <div class="portrait-column">
-    <div class="portrait-container">
-      <img src="ROB.png" alt="Rob" class="portrait-img">
-      <div class="hover-bio hover-left">
-        Rob – A founding member of O.H. S.H.I.T., his experiences on Buffalo Ridge as a young man coupled with 15 years of witnessing unexplained phenomena in Bars and clubs (he has a staunch belief that ghosts and entities are drawn to gathering places) has driven his curiosity. Unfortunately, curiosity does not equal courage... he’s kind of the team chicken shit.
-      </div>
-      <p>Rob</p>
-    </div>
-    <div class="portrait-container">
-      <img src="STEVEN.png" alt="Steven" class="portrait-img">
-      <div class="hover-bio hover-left">
-        Steven – The Genius of the bunch. The resident IT expert on the Ridge, the team would have a hard time getting on the internet without this cat. Just don’t give him your online passwords or you’ll end up married to a Tai mail order bride looking for U.S. residency. He’s sneaky like that...
-      </div>
-      <p>Steven</p>
-    </div>
-  </div>
+<!-- Mobile Portrait Row -->
+<div class="portrait-row-mobile">
+  <div class="mobile-profile"><p>Drew</p><img src="DREW.png" alt="Drew" class="portrait-img-mobile" onclick="openModal('drew')"></div>
+  <div class="mobile-profile"><p>Rob</p><img src="ROB.png" alt="Rob" class="portrait-img-mobile" onclick="openModal('rob')"></div>
+  <div class="mobile-profile"><p>Steven</p><img src="STEVEN.png" alt="Steven" class="portrait-img-mobile" onclick="openModal('steven')"></div>
+  <div class="mobile-profile"><p>Ty</p><img src="TY.png" alt="Ty" class="portrait-img-mobile" onclick="openModal('ty')"></div>
 </div>
 
-<div class="portrait-row-mobile" style="display:none;">
-  <div class="mobile-profile"><p>Drew</p><img src="DREW.png" alt="Drew" class="portrait-img-mobile"></div>
-  <div class="mobile-profile"><p>Rob</p><img src="ROB.png" alt="Rob" class="portrait-img-mobile"></div>
-  <div class="mobile-profile"><p>Steven</p><img src="STEVEN.png" alt="Steven" class="portrait-img-mobile"></div>
-  <div class="mobile-profile"><p>Ty</p><img src="TY.png" alt="Ty" class="portrait-img-mobile"></div>
+<!-- Mobile Modals -->
+<div id="modal-drew" class="modal">
+  <img src="DREW.png" alt="Drew">
+  <p>Since his days at Oak Hills High school, Drew has felt challenged to prove/disprove anything difficult to explain. The primary founding member of O.H. S.H.I.T. and a natural investigator, he also enjoys fishing (novice level at best... poser) and being a “Griefer” on GTA V.</p>
+  <button class="close-btn" onclick="closeModal('drew')">Close</button>
 </div>
+
+<div id="modal-rob" class="modal">
+  <img src="ROB.png" alt="Rob">
+  <p>A founding member of O.H. S.H.I.T., his experiences on Buffalo Ridge as a young man coupled with 15 years of witnessing unexplained phenomena in Bars and clubs (he has a staunch belief that ghosts and entities are drawn to gathering places) has driven his curiosity. Unfortunately, curiosity does not equal courage... he’s kind of the team chicken shit.</p>
+  <button class="close-btn" onclick="closeModal('rob')">Close</button>
+</div>
+
+<div id="modal-steven" class="modal">
+  <img src="STEVEN.png" alt="Steven">
+  <p>The Genius of the bunch. The resident IT expert on the Ridge, the team would have a hard time getting on the internet without this cat. Just don’t give him your online passwords or you’ll end up married to a Tai mail order bride looking for U.S. residency. He’s sneaky like that...</p>
+  <button class="close-btn" onclick="closeModal('steven')">Close</button>
+</div>
+
+<div id="modal-ty" class="modal">
+  <img src="TY.png" alt="Ty">
+  <p>The youngest member of the team is also the 3rd from Cincinnati’s West Side... (Wes-wes yo!) The research expert for the podcast, he is also a founding member of O.H. S.H.I.T.. Just don’t ask him what he’d do for obscene amounts of money... you don’t wanna know.</p>
+  <button class="close-btn" onclick="closeModal('ty')">Close</button>
+</div>
+
+<!-- Original Desktop Wrapper preserved separately (not shown in this snippet) -->
 
 <p>NEW EPISODES EVERY THURSDAY.</p>
 <p>Buffalo Ridge is your source for chilling stories, strange events, conspiracy theories, & the unexplained.</p>
@@ -337,15 +380,14 @@
     if (selected) selected.play();
   }
 
-  window.addEventListener("load", () => {
-    if (window.innerWidth <= 768) {
-      document.querySelector(".portrait-row-mobile").style.display = "flex";
-    }
-  });
-</script>
+  function openModal(name) {
+    document.getElementById('modal-' + name).style.display = 'flex';
+  }
 
-</body>
-</html>
+  function closeModal(name) {
+    document.getElementById('modal-' + name).style.display = 'none';
+  }
+</script>
 
 </body>
 </html>

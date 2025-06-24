@@ -192,6 +192,59 @@
     button:hover {
       background-color: #555;
     }
+    .portrait-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hover-bio {
+  position: absolute;
+  bottom: 220px;
+  background-color: rgba(20, 20, 20, 0.95);
+  color: #fff;
+  padding: 10px 15px;
+  width: 250px;
+  text-align: left;
+  font-size: 0.85em;
+  border: 1px solid #666;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(255,255,255,0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+  pointer-events: none;
+  animation: flickerBorder 3s infinite;
+}
+
+.portrait-container:hover .hover-bio {
+  opacity: 1;
+}
+
+@keyframes flickerBorder {
+  0%, 100% {
+    border-color: #666;
+    box-shadow: 0 0 8px rgba(255,255,255,0.1);
+  }
+  10% {
+    border-color: #999;
+    box-shadow: 0 0 12px rgba(255,255,255,0.2);
+  }
+  20% {
+    border-color: #444;
+    box-shadow: 0 0 5px rgba(255,255,255,0.05);
+  }
+  30% {
+    border-color: #777;
+    box-shadow: 0 0 15px rgba(255,255,255,0.3);
+  }
+  40% {
+    border-color: #333;
+    box-shadow: 0 0 6px rgba(255,255,255,0.08);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -206,9 +259,17 @@
     });
   </script>
 
-  <div class="portrait-wrapper">
-    <div class="portrait-column">
-      <div><img src="DREW.png" alt="Drew" class="portrait-img"><p>Drew</p></div>
+  <div class="portrait-column">
+  <div class="portrait-container">
+    <img src="DREW.png" alt="Drew" class="portrait-img">
+    <div class="hover-bio">
+      Drew – Since his days at Oak Hills High School, Drew has felt challenged to prove/disprove anything difficult to explain. The primary founding member of O.H. S.H.I.T. and a natural investigator, he also enjoys fishing (novice level at best... poser) and being a “Griefer” on GTA V.
+    </div>
+    <p>Drew</p>
+  </div>
+  <div><img src="TY.png" alt="Ty" class="portrait-img"><p>Ty</p></div>
+</div>
+
       <div><img src="TY.png" alt="Ty" class="portrait-img"><p>Ty</p></div>
     </div>
     <div>

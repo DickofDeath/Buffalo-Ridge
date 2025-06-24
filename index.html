@@ -18,23 +18,63 @@
       text-align: center;
     }
     .logo {
-      height: 300px;
+      height: 400px;
       width: auto;
       max-width: 90vw;
+      animation: flickerLogo 3.2s infinite;
       filter: grayscale(100%);
     }
-    .portrait-img {
+    .portrait-img, .portrait-img-mobile {
       height: 200px;
+      width: auto;
       border-radius: 8px;
       filter: grayscale(100%);
       transition: all 0.4s ease;
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+      animation: flicker 2.7s infinite;
       cursor: pointer;
     }
     .portrait-img-mobile {
       height: 80px;
+    }
+    .bio-tooltip {
+      display: none;
+      position: absolute;
+      background-color: #111;
+      border: 1px solid #444;
+      padding: 10px;
       border-radius: 6px;
-      filter: grayscale(100%);
+      max-width: 250px;
+      font-size: 0.9em;
+      z-index: 100;
+    }
+    .mobile-modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: left;
+      padding: 1rem;
+    }
+    .mobile-modal img {
+      max-height: 40vh;
+      margin-bottom: 1rem;
+    }
+    .mobile-modal p {
+      max-width: 90vw;
+    }
+    .mobile-modal button {
+      margin-top: 1rem;
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
       cursor: pointer;
     }
     .portrait-wrapper {
@@ -52,48 +92,6 @@
       align-items: center;
       gap: 1rem;
     }
-    .bio-popup {
-      display: none;
-      position: absolute;
-      background-color: #111;
-      color: #eee;
-      padding: 1rem;
-      border: 2px solid #444;
-      border-radius: 6px;
-      width: 250px;
-      z-index: 1000;
-      text-align: left;
-      font-size: 0.9rem;
-      box-shadow: 0 0 10px black;
-    }
-    .mobile-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 2000;
-    }
-    .mobile-modal img {
-      max-height: 50vh;
-      margin-bottom: 1rem;
-    }
-    .mobile-modal p {
-      max-width: 80%;
-      font-size: 1rem;
-    }
-    .mobile-modal button {
-      margin-top: 1rem;
-      background-color: #444;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-    }
     @media (max-width: 768px) {
       .portrait-wrapper { display: none; }
       .portrait-row-mobile {
@@ -104,9 +102,23 @@
         margin: 1rem 0;
       }
     }
+    .ridge-button:hover {
+      background-color: #222;
+      transform: scale(1.05);
+    }
   </style>
 </head>
 <body>
+  <audio id="bg-audio" src="sounds/creepy_background_hum_with_whispers.mp3" autoplay loop muted hidden></audio>
+  <script>
+    window.addEventListener('click', function enableAudio() {
+      const audio = document.getElementById('bg-audio');
+      audio.muted = false;
+      audio.play().catch(e => console.log('Playback error:', e));
+      window.removeEventListener('click', enableAudio);
+    });
+  </script>
+
   <div class="portrait-wrapper">
     <div class="portrait-column">
       <div><img src="DREW.png" alt="Drew" class="portrait-img"><p>Drew</p></div>
@@ -128,11 +140,66 @@
     <div class="mobile-profile"><p>Ty</p><img src="TY.png" alt="Ty" class="portrait-img-mobile"></div>
   </div>
 
-  <div id="bio-popup" class="bio-popup"></div>
-  <div id="mobileModal" class="mobile-modal">
-    <img id="modalImg" src="" alt="">
-    <p id="modalBio"></p>
-    <button onclick="closeModal()">Close</button>
+  <div id="bio-tooltip" class="bio-tooltip"></div>
+  <div id="bio-modal" class="mobile-modal">
+    <img id="modal-img" src="" alt="">
+    <p id="modal-text"></p>
+    <button onclick="hideModal()">Close</button>
+  </div>
+
+  <p>New episodes every Thursday... Buffalo Ridge is your source for chilling stories, strange events, and voices.</p>
+  <p><strong>Right here from up on the Ridge.</strong></p>
+
+  <div class="button-grid">
+    <a href="https://open.spotify.com/show/4iG0SrMt0ATU8rqnAcWy3e" target="_blank" class="ridge-link"><div class="ridge-button">Spotify</div></a>
+    <a href="https://www.youtube.com/channel/UCHDjvZvemkFoVgsXagJYShw" target="_blank" class="ridge-link"><div class="ridge-button">YouTube</div></a>
+    <div class="ridge-link"><div class="ridge-button" onclick="toggleSounds()">Sounds</div></div>
+    <a href="https://youtu.be/HRAJbOmm6Lk?si=sgOuRF0foGBzJJxU" target="_blank" class="ridge-link"><div class="ridge-button">About</div></a>
+    <a href="https://www.facebook.com/photo/?fbid=122102987132919073&set=a.122102987318919073" target="_blank" class="ridge-link"><div class="ridge-button">Touch Ty's Weener</div></a>
+    <a href="mailto:rob.auburnviewmedia@gmail.com" class="ridge-link"><div class="ridge-button">Email Us</div></a>
+  </div>
+
+  <div id="sound-section" class="section" style="display: none;">
+    <h2>Sound Bites</h2>
+    <div class="button-grid">
+      <button onclick="playSound('sound1')">DID YOU SEE THAT</button>
+      <button onclick="playSound('sound2')">D in my B</button>
+      <button onclick="playSound('sound3')">GUN SWIM</button>
+    </div>
+    <audio id="sound1" src="sounds/DID YOU SEE THAT.mp3"></audio>
+    <audio id="sound2" src="sounds/D in my B.mp3"></audio>
+    <audio id="sound3" src="sounds/GUN SWIM.mp3"></audio>
+  </div>
+
+  <div class="section">
+    <h2>Watch the Latest Episode</h2>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/ARvMdWtVNgQ?si=r9ZAtTNNZaGYOEsF" allowfullscreen></iframe>
+  </div>
+
+  <div class="section">
+    <h2>Listen to the Latest Episode</h2>
+    <audio controls>
+      <source src="your-latest-episode.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <div class="section">
+    <h2>Subscribe to Our Newsletter</h2>
+    <form action="mailto:your@email.com" method="post" enctype="text/plain">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Your email" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Leave a Comment</h2>
+    <form action="#" method="post">
+      <textarea name="comment" rows="4" placeholder="Your thoughts..."></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <p style="font-size: 0.9em; opacity: 0.6;">(Comments won't be saved without a backend. Future upgrade!)</p>
   </div>
 
   <script>
@@ -143,38 +210,58 @@
       "Steven": "The Genious of the bunch. The resident IT expert on the Ridge, the team would have a hard time getting on the internet without this cat. Just don’t give him your online passwords or you’ll end up married to a Tai mail order bride looking for U.S. residency. He’s sneaky like that..."
     };
 
-    const popup = document.getElementById('bio-popup');
-    document.querySelectorAll('.portrait-img').forEach(img => {
-      img.addEventListener('mouseenter', (e) => {
-        const name = img.alt;
-        popup.innerText = bios[name] || "";
-        popup.style.display = 'block';
-        const rect = img.getBoundingClientRect();
-        popup.style.top = (rect.bottom + window.scrollY + 5) + 'px';
-        popup.style.left = (rect.left + window.scrollX) + 'px';
-      });
-      img.addEventListener('mouseleave', () => {
-        popup.style.display = 'none';
-      });
-    });
-
-    const modal = document.getElementById('mobileModal');
-    const modalImg = document.getElementById('modalImg');
-    const modalBio = document.getElementById('modalBio');
-
-    document.querySelectorAll('.portrait-img-mobile').forEach(img => {
-      img.addEventListener('click', () => {
-        const name = img.alt;
-        modalImg.src = img.src;
-        modalImg.alt = name;
-        modalBio.innerText = bios[name] || "";
-        modal.style.display = 'flex';
-      });
-    });
-
-    function closeModal() {
-      modal.style.display = 'none';
+    function toggleSounds() {
+      const section = document.getElementById('sound-section');
+      section.style.display = section.style.display === 'none' ? 'block' : 'none';
     }
+
+    function playSound(id) {
+      const sounds = document.querySelectorAll('audio');
+      sounds.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+      const selected = document.getElementById(id);
+      if (selected) selected.play();
+    }
+
+    function showTooltip(e, name) {
+      const tooltip = document.getElementById('bio-tooltip');
+      tooltip.textContent = bios[name];
+      tooltip.style.display = 'block';
+      tooltip.style.left = e.pageX + 15 + 'px';
+      tooltip.style.top = e.pageY - 20 + 'px';
+    }
+
+    function hideTooltip() {
+      document.getElementById('bio-tooltip').style.display = 'none';
+    }
+
+    function showModal(name, imgSrc) {
+      document.getElementById('bio-modal').style.display = 'flex';
+      document.getElementById('modal-img').src = imgSrc;
+      document.getElementById('modal-img').alt = name;
+      document.getElementById('modal-text').textContent = bios[name];
+    }
+
+    function hideModal() {
+      document.getElementById('bio-modal').style.display = 'none';
+    }
+
+    window.addEventListener("load", () => {
+      if (window.innerWidth <= 768) {
+        document.querySelector(".portrait-row-mobile").style.display = "flex";
+      }
+
+      document.querySelectorAll('.portrait-img').forEach(img => {
+        img.addEventListener('mouseenter', (e) => showTooltip(e, img.alt));
+        img.addEventListener('mouseleave', hideTooltip);
+      });
+
+      document.querySelectorAll('.portrait-img-mobile').forEach(img => {
+        img.addEventListener('click', () => showModal(img.alt, img.src));
+      });
+    });
   </script>
 </body>
 </html>
